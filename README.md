@@ -4,7 +4,7 @@ Asmpy is a Assembly parser(although it's more of an emulator) written in Python<
 
 ## Syntax
 Asmpy uses a slightly custom Assembly syntax<br>
-It's a combination to what I learned from [this](https://youtu.be/CW9N6kGbu2I?si=xz2PuppXG7cxwaIb) minecraft video by mattbatwings and [this](https://github.com/hackclub/some-assembly-required) repo that explains X86-64 Assembly syntax
+It's a combination to what I learned from [this minecraft video](https://youtu.be/CW9N6kGbu2I?si=xz2PuppXG7cxwaIb) by mattbatwings and [this repo](https://github.com/hackclub/some-assembly-required) by hackclub that explains X86-64 Assembly syntax
 
 I highly recomend both of these, video is really cool(it's what inspired me to make this interpreter in the first place) and the repo is a really good resource for learning Assembly
 <!--`destreg` and `reg[number]` are always a index that starts at 0-->
