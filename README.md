@@ -41,3 +41,10 @@ Asmpy uses a CLI to do stuff
 * use `path [filepath]` to store a path to autmatically append to the beginning of the path given for the `file` command
     * use `path --clear` to clear the stored path
     * the path is not stored when the interpreter is exited
+
+
+## Installation
+To install Asmpy, either clone or download this repo and then run `asmpy.py`<br>
+It's really not hard<br>
+Because entire program is one python script
+Man I love Python
