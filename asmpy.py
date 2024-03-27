@@ -107,7 +107,7 @@ class asmpy:
                 for i in range(len(l)):
                     if i == 0 or i in list(self.__labels.values()): continue
                     check = False
-                    if l[0] in ('mov', 'ldi', 'lod'):
+                    if l[0] in ('mov', 'ldi'):
                         check = l[i].replace('.', '').isdigit() and l[i].count('.') <= 1
                     else:
                         check = l[i].isdigit()
