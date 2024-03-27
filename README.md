@@ -13,8 +13,8 @@ I highly recomend both of these, video is really cool(it's what inspired me to m
 I was going to give a list of actions, but then I was like "no" so screw you go learn Assembly<!--[learn Assembly](https://github.com/hackclub/some-assembly-required)--> yourself<br><br>
 ...<br><br>
 Fine, here's the differences between Asmpy and X86-64 Assembly syntax(which is what I was learning to make this):<br>
-* `jmp` is like `call`, but it can jump to a line number as well(line number comes from a register)
-* `goto` is like `jmp` or `call`, but it jumps to the line number given in the code
+* `jmp` is like `call`, but it jumps to a line number instead of a label(line number comes from a register), however, I recommend using `call` instead, as it's more reliable
+* `jmpi` is like `jmp`, but it jumps to the given immediate
 * All registers are referred to as a number from 0 to the amount of r-1, with r being the amount of registers(like RISC-V but without the "r")
 * `prn` prints the given register's contents to console
 * `log` prints the given message to console

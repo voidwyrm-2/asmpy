@@ -183,7 +183,7 @@ class asmpy:
                     if callnest > 0:
                         callnest -= 1
                         line = callls.pop()
-                case 'goto':
+                case 'jmpi':
                     line = int(l[1])
                 case 'push':
                     self.__stack.append(self.__register[int(l[1])])
