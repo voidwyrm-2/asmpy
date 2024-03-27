@@ -4,7 +4,7 @@ Asmpy is a Assembly parser(although it's more of an emulator) written in Python<
 
 ## Syntax
 Asmpy uses a slightly custom Assembly syntax<br>
-It's a combination to what I learned from [this minecraft video](https://youtu.be/CW9N6kGbu2I?si=xz2PuppXG7cxwaIb) by mattbatwings and [this repo](https://github.com/hackclub/some-assembly-required) by hackclub that explains X86-64 Assembly syntax
+It's a combination to what I learned from [this minecraft video](https://youtu.be/CW9N6kGbu2I?si=xz2PuppXG7cxwaIb) by mattbatwings(I'm pretty sure it's RISC-V) and [this repo](https://github.com/hackclub/some-assembly-required) by hackclub that explains X86-64 Assembly syntax
 
 I highly recomend both of these, video is really cool(it's what inspired me to make this interpreter in the first place) and the repo is a really good resource for learning Assembly
 <!--`destreg` and `reg[number]` are always a index that starts at 0-->
@@ -15,9 +15,10 @@ I was going to give a list of actions, but then I was like "no" so screw you go 
 Fine, here's the differences between Asmpy and X86-64 Assembly syntax(which is what I was learning to make this):<br>
 * `jmp` is like `call`, but it can jump to a line number as well(line number comes from a register)
 * `goto` is like `jmp` or `call`, but it jumps to the line number given in the code
-* all registers are referred to as a number from 0 to the amount of registers minus 1(base register amount is 8, so it would be from 0-7 in that case)
+* All registers are referred to as a number from 0 to the amount of registers minus 1(base register amount is 16, so it would be from 0-15 in that case)(so like RISC-V)
 * `prn` prints the given register's contents to console
 * `log` prints the given message to console
+* It has block comments, `:(` and `):` open and close them, respectively
 
 <!--* `add [destreg] [reg1] [reg2]`: reads from reg1 and reg2, adds them together, then sets destrest to the result
 * `sub [destreg] [reg1] [reg2]`: reads from reg1 and reg2, subtracts them, then sets destrest to the result

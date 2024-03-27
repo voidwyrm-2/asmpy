@@ -1,1 +1,2 @@
-; put something here when you think of it
+; program attempt 1
+; Armpy Assembly syntax

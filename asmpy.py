@@ -21,30 +21,46 @@ class linls:
 
 
 class asmpy:
-    def __init__(self, registersize: int = 8):
-        self.__register = [0 for _ in range(8)]
+    def __init__(self, registersize: int = 16):
+        # init register list, label dict, and stack linear list
+        self.__register = [0 for _ in range(registersize)]
         self.__labels = {}
         self.__stack = linls()
 
     def parseasm(self, asm: str | list[str] | tuple[str]):
-        if type(asm) is tuple:
+        if type(asm) is tuple: # if asm is a tuple, make it a list
             asm = list(asm)
-        elif type(asm) is str:
+        elif type(asm) is str: # if asm is a str, split it by new lines
             asm = asm.split('\n')
         
+        # preload all labels
         inlab = False
         labinfo = ()
+        lpibc = False # label preloader isblockcomment
         for ln in range(len(asm)):
             l = asm[ln].strip()
-            if (not l.startswith('.') and not l.startswith('ret')) or len(l.removeprefix('.')) < 1:
+            if '):' in l:
+                l = l.split('):')[-1]
+                lpibc = False
+
+            if lpibc:
                 continue
-            if ';' in l:
-                l = l.split(';')[0]
+
+            if (not l.startswith('.') and not l.startswith('ret')) or len(l.removeprefix('.')) < 1:
+                continue # ignore the line if it's not a label, a return, or if it's empty
+
+            if ';' in l: # check for line comment
+                l = l.split(';')[0] # remove commented out part
+            
+            if ':(' in l:
+                l = l.split(':(')[0]
+                lpibc = True
 
             if l.startswith('.') and not inlab:
                 labinfo = (l, ln)
                 inlab = True
                 continue
+
             elif l.startswith('ret') and inlab:
                 self.__labels[labinfo[0]] = (labinfo[1], ln)
                 labinfo = ()
@@ -53,6 +69,7 @@ class asmpy:
         line = 0
         callnest = 0
         callls = linls()
+        isblockcomment = False
         while line < len(asm):
             l = asm[line].strip()
             if l.startswith(';') or len(l.strip()) < 1:
@@ -89,6 +106,10 @@ class asmpy:
                     self.__register[int(l[1])] = self.__register[int(l[2])] + self.__register[int(l[3])]
                 case 'sub':
                     self.__register[int(l[1])] = self.__register[int(l[2])] - self.__register[int(l[3])]
+                case 'addi':
+                    self.__register[int(l[1])] = self.__register[int(l[2])] + int(l[3])
+                case 'subi':
+                    self.__register[int(l[1])] = self.__register[int(l[2])] - int(l[3])
                 #case 'mul':
                 #    self.__register[int(l[1])] = float(l[2]) * float(l[3])
                 #case 'div':
@@ -103,7 +124,7 @@ class asmpy:
                     self.__register[int(l[1])] = self.__register[int(l[1])] + 1
                 case 'dec':
                     self.__register[int(l[1])] = self.__register[int(l[1])] - 1
-                case 'mov' | 'ldi' | 'lod':
+                case 'mov' | 'ldi':
                     self.__register[int(l[1])] = float(l[2]) if '.' in l[2] else int(l[2])
                 case 'jmp':
                     if l[1].startswith('.'):
