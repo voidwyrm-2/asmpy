@@ -45,7 +45,7 @@ Asmpy uses a CLI to do stuff
 
 
 ## Installation
-To install Asmpy, either clone or download this repo and then run `asmpy.py`<br>
+To install the Asmpy interpreter, either clone, download this repo, or download just the `asmpy.py` file and then run the `asmpy.py` file<br>
 It's really not hard<br>
-Because entire program is one python script
+Because entire program is one python script<br>
 Man I love Python
