@@ -2,7 +2,7 @@ from pathlib import Path
 
 
 
-class linls:
+class Linls:
     '''
     Simple linear list(or, a "stack")
     '''
@@ -20,12 +20,12 @@ class linls:
 
 
 
-class asmpy:
+class Asmpy:
     def __init__(self, registersize: int = 16):
         # init register list, label dict, and stack linear list
         self.__register = [0 for _ in range(registersize)]
         self.__labels = {}
-        self.__stack = linls()
+        self.__stack = Linls()
         self.__ZF = False
 
     def parseasm(self, asm: str | list[str] | tuple[str]):
@@ -71,7 +71,7 @@ class asmpy:
         
         line = 0
         callnest = 0
-        callls = linls()
+        callls = Linls()
         isblockcomment = False
         gotzero = False
         while line < len(asm):
@@ -202,7 +202,7 @@ class asmpy:
 
 
 def cli():
-    inst = asmpy()
+    inst = Asmpy()
     pathcache = ''
     running = True
     while running:
